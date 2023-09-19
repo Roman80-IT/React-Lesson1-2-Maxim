@@ -1,45 +1,31 @@
-import { Button } from 'components/Button';
+import { Heading } from 'components/Heading/Heading';
+import { Book } from 'components/Book/Book';
 
-const buttons = [
-  {
-    id: '1',
-    variant: 'red',
-    children: 'Some text from red button',
-  },
-  {
-    id: '2',
-    variant: 'yellow',
-    children: 'Some text from yellow button',
-  },
-  {
-    id: '3',
-    variant: 'blue',
-    children: 'Some text from blue button',
-  },
-];
+import booksJson from './books';
+
+import css from './App.module.css';
+
+const books = booksJson.books;
 
 export const App = props => {
   return (
     <div>
-      <h1>React homework template</h1>
-      <div>
-        {buttons.map(buttonProperties => {
+      <Heading>React lesson 2, CSS</Heading>
+      <ul className={css.booksList}>
+        {books.map(book => {
           return (
-            <Button key={buttonProperties.id} variant={buttonProperties.variant}>
-              {buttonProperties.children}
-            </Button>
+            <Book
+              key={`${book.title}${book.author}`}
+              title={book.title}
+              author={book.author}
+              year={book.year}
+              genre={book.genre}
+              favourite={book.favourite}
+              cover={book.cover}
+            />
           );
         })}
-
-        {/* <Button discount={true} >
-          Some text
-        </Button>
-        <Button buttonNumber="#14">Some text</Button>
-        <Button variant="blue">Some text</Button>
-        <Button variant="yellow" discount={true}>
-          Some text 3
-        </Button> */}
-      </div>
+      </ul>
     </div>
   );
 };
